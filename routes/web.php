@@ -7,5 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/series/index', [SeriesController::class, 'index'])->name('series.index');
-Route::get('/series/criar', [SeriesController::class, 'create'])->name('series.create');
+
+Route::group(['prefix' => 'series'],function (){
+    Route::get('/index', [SeriesController::class, 'index'])->name('series.index');
+    Route::get('/criar', [SeriesController::class, 'create'])->name('series.create');
+    Route::post('/salvar', [SeriesController::class, 'store'])->name('series.store');
+});
